@@ -6,17 +6,21 @@ import retrofit2.http.Path
 
 interface MhwApi {
 
+    companion object {
+       const val BASE_URL = "https://mhw-db.com"
+    }
+
     @GET("/armor")
     suspend fun getArmorList(): List<ArmorResponse>
+
+    @GET("/armor/{id}")
+    suspend fun getArmorById(@Path("id")id: Int): ArmorResponse
 
     @GET("/armor/sets")
     suspend fun getArmorSetsList(): List<ArmorSetsResponse>
 
     @GET("/armor/sets/{id}")
     suspend fun getArmorSetsById(@Path("id")id: Int): ArmorSetsResponse
-
-    @GET("/armor/{id}")
-    suspend fun getArmorById(@Path("id")id: Int): ArmorResponse
 
     @GET("/weapon")
     suspend fun getWeaponList(): List<WeaponsRespons>
